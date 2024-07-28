@@ -11,7 +11,11 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
-    
+
+    def get_absolute_url(self):
+        
+        return reverse('list-category', args={self.slug}) # Return the URL of the list-category view with the product's slug as an argument
+
 
 class Product(models.Model):
     category = models.ForeignKey(Category, related_name='product', on_delete=models.CASCADE, null=True)
