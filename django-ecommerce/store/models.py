@@ -1,6 +1,6 @@
 from django.db import models
 
-# Create your models here.
+from django.urls import reverse
 
 class Category(models.Model):
     name = models.CharField(max_length=255, db_index=True)
@@ -26,6 +26,9 @@ class Product(models.Model):
         verbose_name_plural = 'products'
 
     
+    def get_absolute_url(self):
+        
+        return reverse('product-info', args={self.slug}) # Return the URL of the product-info view with the product's slug as an argument
 
 
 
